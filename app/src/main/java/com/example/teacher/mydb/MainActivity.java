@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         this.listView = (ListView) findViewById(R.id.listView);
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
+        databaseAccess.addQuote(Integer.toString((int) (Math.random() * 100)) + "+" + Integer.toString((int) (Math.random() * 100)));
         List<String> quotes = databaseAccess.getQuotes();
         databaseAccess.close();
 

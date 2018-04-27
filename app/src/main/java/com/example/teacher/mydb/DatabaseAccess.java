@@ -37,12 +37,36 @@ public class DatabaseAccess {
             this.database.close();
         }
     }
+    public void addQuote(String element) {
+        this.database.execSQL("INSERT INTO questions values (NULL, '" + element +  "', '42', '2', '2', '2')");
+    }
+
+    /*
+    class Question {
+        private String question;
+        private String[] answers = new String[4];
+
+        public Question(String question, String[] answers) {
+            this.question = question;
+            this.answers[0] = answers[0];
+            this.answers[1] = answers[1];
+            this.answers[2] = answers[2];
+            this.answers[3] = answers[3];
+        }
+
+        public String getQuestion() {
+            return question;
+        }
+    }
+    */
 
     public List<String> getQuotes() {
         List<String> list = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT * FROM questions", null);
         cursor.moveToFirst();
+
         while (!cursor.isAfterLast()) {
+            // String[] answers = {cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)};
             list.add(cursor.getString(1));
             cursor.moveToNext();
         }
